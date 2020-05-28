@@ -1,0 +1,25 @@
+{
+  "fb-locale": "fr_FR",
+  "translations": {
+    "RqH6/1RO1wC8xRjKt95P5A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Apprendre React",
+          "variations": {}
+        }
+      ]
+    },
+    "SpaokJAze/NmDau6SO5VXw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Éditez {=src/App.tsx} et sauvez pour recharger la page.",
+          "variations": {}
+        }
+      ]
+    }
+  }
+}
