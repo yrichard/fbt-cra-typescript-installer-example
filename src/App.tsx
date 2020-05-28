@@ -1,14 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+import fbt, { IntlViewerContext, init } from "fbt";
+
+import React from "react";
+import intl from "./translatedFbts.json";
+import logo from "./logo.svg";
+
+// This will load the translated strings in FBT.
+init({ translations: intl });
+
+IntlViewerContext.locale = "fr_FR";
+
+// Needed until it get resolved with the FBT team.
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+fbt;
+
+export default () => {
+  // This might trigger the error 'Unexpected token, expected ";"'
+  // when doing 'yarn collect-fbts'. Adding a 'babel.config.js' file
+  // with '@babel/preset-typescript' as a preset will solve the problem.
+  console.log(IntlViewerContext.locale!);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <fbt desc="more complex example">
+            Edit <code>src/App.tsx</code> and save to reload.
+          </fbt>
         </p>
         <a
           className="App-link"
@@ -16,11 +36,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <fbt desc="example">Learn React</fbt>
         </a>
       </header>
     </div>
   );
-}
-
-export default App;
+};
