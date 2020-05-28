@@ -11,10 +11,6 @@ init({ translations: intl });
 
 IntlViewerContext.locale = "fr_FR";
 
-// Needed until it get resolved with the FBT team.
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-fbt;
-
 export default () => {
   // This might trigger the error 'Unexpected token, expected ";"'
   // when doing 'yarn collect-fbts'. Adding a 'babel.config.js' file
