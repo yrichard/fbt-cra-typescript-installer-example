@@ -1,6 +1,6 @@
 import "./App.css";
 
-import fbt, { IntlViewerContext, init } from "fbt";
+import { IntlViewerContext, fbt, init } from "fbt";
 
 import React from "react";
 import intl from "./translatedFbts.json";
