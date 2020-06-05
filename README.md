@@ -4,4 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 `yarn add fbt-cra-typescript-installer`
 
+`yarn all-fbts`
+
 `yarn start`
