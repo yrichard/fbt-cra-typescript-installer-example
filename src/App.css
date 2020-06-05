@@ -13,9 +13,9 @@
   }
 }
 
-.App-header {
+.App-header,
+.fbtExamples {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.fbtExamples {
+  font-size: 15px;
+  padding: 20px;
+  justify-content: initial;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 18px;
+}
+
+.fbtExamples form {
+  padding: 10px 0;
+}
+
+html {
+  background-color: #282c34;
 }
