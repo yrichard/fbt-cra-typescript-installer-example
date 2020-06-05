@@ -1,8 +1,8 @@
 import "./App.css";
 
-import { IntlViewerContext, fbt, init } from "fbt";
+import { FbtParam, IntlViewerContext, fbt, init } from "fbt";
+import React, { FormEvent, useCallback, useRef, useState } from "react";
 
-import React from "react";
 import intl from "./translatedFbts.json";
 import logo from "./logo.svg";
 
@@ -17,10 +17,33 @@ export default () => {
   // with '@babel/preset-typescript' as a preset will solve the problem.
   console.log(IntlViewerContext.locale!);
 
+  const [name, setName] = useState("");
+  const inputNameRef = useRef(null);
+
+  const onSubmitName = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
+      setName(inputNameRef!.current!["value"]);
+    },
+    [setName]
+  );
+
+  const fbtParamsTest = (
+    <div>
+      <fbt desc="FbtParams example string">
+        Hello, <FbtParam name="name">{name}</FbtParam>
+      </fbt>
+    </div>
+  );
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img
+          src={logo}
+          className="App-logo"
+          alt={fbt("logo", "alt text for logo")}
+        />
         <p>
           <fbt desc="more complex example">
             Edit <code>src/App.tsx</code> and save to reload.
@@ -35,6 +58,34 @@ export default () => {
           <fbt desc="example">Learn React</fbt>
         </a>
       </header>
+      <div className="fbtExamples">
+        <fbt desc="description for more examples">
+          Some more use cases for FBT strings:
+        </fbt>
+        <h2>FbtParam</h2>
+        <div>
+          <fbt desc="about FbtParams">
+            <strong>FbtParams</strong> allows you to inject a value within a
+            translated string.
+          </fbt>
+        </div>
+        <div>
+          <form onSubmit={onSubmitName}>
+            <input
+              type="text"
+              ref={inputNameRef}
+              placeholder={fbt(
+                "Enter your name",
+                "placeholder for prompt to enter your name"
+              )}
+            />
+            <button type="submit">
+              <fbt desc="submit button label">Submit</fbt>
+            </button>
+          </form>
+          {name && fbtParamsTest}
+        </div>
+      </div>
     </div>
   );
 };
