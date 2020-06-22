@@ -28,11 +28,17 @@ export default () => {
     [setName]
   );
 
-  const fbtParamsTest = (
+  /*const fbtParamsTest = (
     <div>
       <fbt desc="FbtParams example string">
         Hello, <FbtParam name="name">{name}</FbtParam>
       </fbt>
+    </div>
+  );*/
+  const fbtParamsTest = (
+    <div>
+      <fbt desc="FbtParams example string">Hello,</fbt>
+      {name}
     </div>
   );
 
