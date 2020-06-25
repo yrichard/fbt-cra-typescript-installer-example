@@ -1,7 +1,9 @@
 import "./App.css";
 
+
 import { FbtParam, IntlViewerContext, fbt, init } from "fbt";
 import React, { FormEvent, useCallback, useRef, useState } from "react";
+import { Button, TextField, Container } from '@material-ui/core';
 
 import intl from "./translatedFbts.json";
 import logo from "./logo.svg";
@@ -28,17 +30,11 @@ export default () => {
     [setName]
   );
 
-  /*const fbtParamsTest = (
+  const fbtParamsTest = (
     <div>
       <fbt desc="FbtParams example string">
         Hello, <FbtParam name="name">{name}</FbtParam>
       </fbt>
-    </div>
-  );*/
-  const fbtParamsTest = (
-    <div>
-      <fbt desc="FbtParams example string">Hello,</fbt>
-      {name}
     </div>
   );
 
@@ -65,32 +61,34 @@ export default () => {
         </a>
       </header>
       <div className="fbtExamples">
-        <fbt desc="description for more examples">
-          Some more use cases for FBT strings:
+        <Container maxWidth="md">
+          <fbt desc="description for more examples">
+            Some more use cases for FBT strings:
         </fbt>
-        <h2>FbtParam</h2>
-        <div>
-          <fbt desc="about FbtParams">
-            <strong>FbtParams</strong> allows you to inject a value within a
+          <h2>FbtParam</h2>
+          <div>
+            <fbt desc="about FbtParams">
+              <strong>FbtParams</strong> allows you to inject a value within a
             translated string.
           </fbt>
-        </div>
-        <div>
-          <form onSubmit={onSubmitName}>
-            <input
-              type="text"
-              ref={inputNameRef}
-              placeholder={fbt(
-                "Enter your name",
-                "placeholder for prompt to enter your name"
-              )}
-            />
-            <button type="submit">
+          </div>
+          <div>
+            <form onSubmit={onSubmitName}>
+              <TextField
+                id="outlined-button"
+                label="Enter your name"
+                variant="outlined"
+                color="primary"
+                size="small"
+                style={{ margin: 2, backgroundColor: "white" }}
+              />
+            </form>
+            <Button variant="contained" color="primary" size="large">
               <fbt desc="submit button label">Submit</fbt>
-            </button>
-          </form>
-          {name && fbtParamsTest}
-        </div>
+            </Button>
+            {name && fbtParamsTest}
+          </div>
+        </Container>
       </div>
     </div>
   );
