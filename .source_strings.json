@@ -1,0 +1,148 @@
+{
+ "phrases": [
+  {
+   "hashToText": {
+    "QCle0jT+GFAzAAfyydkCZg==": "Hello,"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 40,
+   "col_beg": 6,
+   "line_end": 40,
+   "col_end": 55,
+   "desc": "FbtParams example string",
+   "project": "",
+   "type": "text",
+   "jsfbt": "Hello,"
+  },
+  {
+   "hashToText": {
+    "x1LLHcB4EUdqwpc5r90HNA==": "logo"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 51,
+   "col_beg": 15,
+   "line_end": 51,
+   "col_end": 47,
+   "desc": "alt text for logo",
+   "project": "",
+   "type": "text",
+   "jsfbt": "logo"
+  },
+  {
+   "hashToText": {
+    "SpaokJAze/NmDau6SO5VXw==": "Edit {=src/App.tsx} and save to reload."
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 54,
+   "col_beg": 10,
+   "line_end": 56,
+   "col_end": 16,
+   "desc": "more complex example",
+   "project": "",
+   "type": "text",
+   "jsfbt": "Edit {=src/App.tsx} and save to reload."
+  },
+  {
+   "hashToText": {
+    "3pc/wPrcO9Av6cBJly1pZQ==": "src/App.tsx"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 55,
+   "col_beg": 17,
+   "line_end": 55,
+   "col_end": 41,
+   "desc": "In the phrase: \"Edit {=src/App.tsx} and save to reload.\"",
+   "project": "",
+   "type": "text",
+   "jsfbt": "src/App.tsx"
+  },
+  {
+   "hashToText": {
+    "RqH6/1RO1wC8xRjKt95P5A==": "Learn React"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 64,
+   "col_beg": 10,
+   "line_end": 64,
+   "col_end": 47,
+   "desc": "example",
+   "project": "",
+   "type": "text",
+   "jsfbt": "Learn React"
+  },
+  {
+   "hashToText": {
+    "kMgF3KoRf+3wYU1NHfQIGg==": "Some more use cases for FBT strings:"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 68,
+   "col_beg": 8,
+   "line_end": 70,
+   "col_end": 14,
+   "desc": "description for more examples",
+   "project": "",
+   "type": "text",
+   "jsfbt": "Some more use cases for FBT strings:"
+  },
+  {
+   "hashToText": {
+    "2Ks/03kndbovrGunpcpkAA==": "{=FbtParams} allows you to inject a value within a translated string."
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 73,
+   "col_beg": 10,
+   "line_end": 76,
+   "col_end": 16,
+   "desc": "about FbtParams",
+   "project": "",
+   "type": "text",
+   "jsfbt": "{=FbtParams} allows you to inject a value within a translated string."
+  },
+  {
+   "hashToText": {
+    "tH8HRhWTzCDsxsZb0H+Ewg==": "FbtParams"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 74,
+   "col_beg": 12,
+   "line_end": 74,
+   "col_end": 38,
+   "desc": "In the phrase: \"{=FbtParams} allows you to inject a value within a translated string.\"",
+   "project": "",
+   "type": "text",
+   "jsfbt": "FbtParams"
+  },
+  {
+   "hashToText": {
+    "EPgz4hj3Jq1L1OJFXM0RJQ==": "Enter your name"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 83,
+   "col_beg": 27,
+   "line_end": 86,
+   "col_end": 15,
+   "desc": "placeholder for prompt to enter your name",
+   "project": "",
+   "type": "text",
+   "jsfbt": "Enter your name"
+  },
+  {
+   "hashToText": {
+    "p2gKVefJdwsEuNM7qk5ygQ==": "Submit"
+   },
+   "filepath": "src/App.tsx",
+   "line_beg": 89,
+   "col_beg": 14,
+   "line_end": 89,
+   "col_end": 58,
+   "desc": "submit button label",
+   "project": "",
+   "type": "text",
+   "jsfbt": "Submit"
+  }
+ ],
+ "childParentMappings": {
+  "3": 2,
+  "7": 6
+ }
+}
