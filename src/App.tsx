@@ -2,8 +2,8 @@ import "./App.css";
 
 
 import { FbtParam, IntlViewerContext, fbt, init } from "fbt";
-import React, { FormEvent, useCallback, useRef, useState, ChangeEvent } from "react";
-import { Button, TextField, Container } from '@material-ui/core';
+import React, { FormEvent, useCallback, useRef, useState, ChangeEvent, ReactElement } from "react";
+import { Button, TextField, Container, Menu, MenuItem, Select, FormControl, makeStyles, Grid, colors } from '@material-ui/core';
 
 import intl from "./translatedFbts.json";
 import logo from "./logo.svg";
@@ -12,6 +12,53 @@ import logo from "./logo.svg";
 init({ translations: intl });
 
 IntlViewerContext.locale = "fr_FR";
+
+interface LanguageSelectorProps {
+  name: string;
+}
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(2),
+    minWidth: 100,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
+  const [name, setName] = useState(props.name);
+  const classes = useStyles();
+  const tStyle = { color: 'white' };
+
+  const onValueChange = useCallback(
+    (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+      const value = event.target.value as string;
+      setName(value);
+    }, []
+  );
+
+  return (
+    <div>
+      <Grid container>
+        <FormControl className={classes.formControl}>
+          <Select
+            id="simple-menu"
+            onChange={onValueChange}
+            defaultValue="English"
+            style={{ backgroundColor: "white" }}
+          >
+            <MenuItem value="English">English</MenuItem>
+            <MenuItem value="French">French</MenuItem>
+            <MenuItem value="Pirate">Pirate</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+      <div style={tStyle}> Translated in {name} </div>
+    </div>
+  )
+}
 
 export default () => {
   // This might trigger the error 'Unexpected token, expected ";"'
@@ -48,9 +95,13 @@ export default () => {
   );
 
 
+
   return (
     <div className="App">
+      <LanguageSelector name="English" />
+
       <header className="App-header">
+
         <img
           src={logo}
           className="App-logo"
