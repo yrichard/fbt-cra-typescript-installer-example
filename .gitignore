@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.enum_manifest.json 
+.source_strings.json
+.src_manifest.json 
+babel.config.js
+craco.config.js
+fbt-cra-typescript-installer.log
+/src/translatedFbts.json
+
