@@ -1,1 +1,24 @@
-{"fr_FR":{"4qcpBS":"Hello,","3nZvOz":"logo","47iU6R":"Éditez {=src/App.tsx} et sauvez pour recharger la page.","3ba0ZR":"src/App.tsx","33rj7N":"Apprendre React","31ZGMu":"Some more use cases for FBT strings:","4AWqQi":"{=FbtParams} allows you to inject a value within a translated string.","26fscY":"FbtParams","3OAt19":"Enter your name","4Bmqbn":"Submit"}}
+{
+  "fr_FR": {
+    "VuIkt": "Hello, {name}",
+    "3nZvOz": "logo",
+    "47iU6R": "Éditez {=src/App.tsx} et sauvez pour recharger la page.",
+    "3ba0ZR": "src/App.tsx",
+    "33rj7N": "Apprendre React",
+    "31ZGMu": "Some more use cases for FBT strings:",
+    "4AWqQi": "{=FbtParams} allows you to inject a value within a translated string.",
+    "26fscY": "FbtParams",
+    "4Bmqbn": "Submit"
+  },
+  "pi_PI": {
+    "VuIkt": "Ahoy, {name}!",
+    "3nZvOz": "logo",
+    "47iU6R": "Scribble {=src/App.tsx} and save it with ye life to get a fresh one, matey!",
+    "3ba0ZR": "src/App.tsx",
+    "33rj7N": "yarr! React!",
+    "31ZGMu": "What this fair ship is capable of:",
+    "4AWqQi": "Ye be usin' {=FbtParams} to cast a value into a translated string!",
+    "26fscY": "FbtParams",
+    "4Bmqbn": "Anchors aweigh!"
+  }
+}

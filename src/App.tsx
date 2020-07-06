@@ -11,11 +11,25 @@ import logo from "./logo.svg";
 // This will load the translated strings in FBT.
 init({ translations: intl });
 
-IntlViewerContext.locale = "fr_FR";
+
 
 interface LanguageSelectorProps {
   name: string;
 }
+
+const supportedLanguages: { [shortname: string]: { name: string } } = {
+  "en_US": { name: "English" },
+  "fr_FR": { name: "French" },
+  "pi_PI": { name: "Pirate" }
+}
+
+const langStore = window.localStorage;
+if (langStore.getItem('lang') == null) {
+  langStore.setItem('lang', 'en_US');
+}
+
+IntlViewerContext.locale = langStore.getItem('lang') || "en_EN";
+
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -28,14 +42,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
-  const [name, setName] = useState(props.name);
+  const [name, setName] = useState(supportedLanguages[langStore.getItem('lang') as string].name);
   const classes = useStyles();
   const tStyle = { color: 'white' };
 
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
       const value = event.target.value as string;
-      setName(value);
+      langStore.setItem('lang', value);
+      setName(supportedLanguages[value].name);
+      window.location.reload();
     }, []
   );
 
@@ -46,12 +62,12 @@ const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
           <Select
             id="simple-menu"
             onChange={onValueChange}
-            defaultValue="English"
+            defaultValue={langStore.getItem('lang')}
             style={{ backgroundColor: "white" }}
           >
-            <MenuItem value="English">English</MenuItem>
-            <MenuItem value="French">French</MenuItem>
-            <MenuItem value="Pirate">Pirate</MenuItem>
+            <MenuItem value="en_US">English</MenuItem>
+            <MenuItem value="fr_FR">French</MenuItem>
+            <MenuItem value="pi_PI">Pirate</MenuItem>
           </Select>
         </FormControl>
       </Grid>
@@ -98,7 +114,7 @@ export default () => {
 
   return (
     <div className="App">
-      <LanguageSelector name="English" />
+      <LanguageSelector name={langStore.getItem('lang') as string} />
 
       <header className="App-header">
 
@@ -131,7 +147,7 @@ export default () => {
             <fbt desc="about FbtParams">
               <strong>FbtParams</strong> allows you to inject a value within a
             translated string.
-          </fbt>
+            </fbt>
           </div>
           <div>
             <form onSubmit={onSubmitName}>

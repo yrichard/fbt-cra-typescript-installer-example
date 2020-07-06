@@ -1,0 +1,53 @@
+{
+  "fb-locale": "pi_PI",
+  "translations": {
+    "RqH6/1RO1wC8xRjKt95P5A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "yarr! React!",
+        "variations": {}
+      }]
+    },
+    "SpaokJAze/NmDau6SO5VXw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Scribble {=src/App.tsx} and save it with ye life to get a fresh one, matey!",
+        "variations": {}
+      }]
+    },
+    "RqJkrxdoAV6eKA6G2GUNUA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Ahoy, {name}!",
+        "variations": {}
+      }]
+    },
+    "kMgF3KoRf+3wYU1NHfQIGg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "What this fair ship is capable of:",
+        "variations": {}
+      }]
+    },
+    "2Ks/03kndbovrGunpcpkAA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Ye be usin' {=FbtParams} to cast a value into a translated string!",
+        "variations": {}
+      }]
+    },
+    "p2gKVefJdwsEuNM7qk5ygQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Anchors aweigh!",
+        "variations": {}
+      }]
+    }
+  }
+}
