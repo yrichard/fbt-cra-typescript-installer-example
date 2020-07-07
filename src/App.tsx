@@ -11,12 +11,6 @@ import logo from "./logo.svg";
 // This will load the translated strings in FBT.
 init({ translations: intl });
 
-
-
-interface LanguageSelectorProps {
-  name: string;
-}
-
 const supportedLanguages: { [shortname: string]: { name: string } } = {
   "en_US": { name: "English" },
   "fr_FR": { name: "French" },
@@ -24,12 +18,11 @@ const supportedLanguages: { [shortname: string]: { name: string } } = {
 }
 
 const langStore = window.localStorage;
-if (langStore.getItem('lang') == null) {
-  langStore.setItem('lang', 'en_US');
+if (langStore.getItem("lang") == null) {
+  langStore.setItem("lang", "en_US");
 }
 
-IntlViewerContext.locale = langStore.getItem('lang') || "en_EN";
-
+IntlViewerContext.locale = langStore.getItem("lang") || "en_EN";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -41,19 +34,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+interface LanguageSelectorProps {
+  name: string;
+}
+
 const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
   const [name, setName] = useState(supportedLanguages[langStore.getItem('lang') as string].name);
   const classes = useStyles();
-  const tStyle = { color: 'white' };
+  const tStyle = { color: "white" };
 
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
       const value = event.target.value as string;
-      langStore.setItem('lang', value);
+      langStore.setItem("lang", value);
       setName(supportedLanguages[value].name);
       window.location.reload();
     }, []
   );
+
+  const arrayMenuItems = [];
+
+  for (let language in supportedLanguages) {
+    const languageName = supportedLanguages[language].name;
+    arrayMenuItems.push(<MenuItem value={language}> {languageName} </MenuItem>);
+  }
+
 
   return (
     <div>
@@ -65,9 +70,9 @@ const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
             defaultValue={langStore.getItem('lang')}
             style={{ backgroundColor: "white" }}
           >
-            <MenuItem value="en_US">English</MenuItem>
-            <MenuItem value="fr_FR">French</MenuItem>
-            <MenuItem value="pi_PI">Pirate</MenuItem>
+            {
+              arrayMenuItems
+            }
           </Select>
         </FormControl>
       </Grid>

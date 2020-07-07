@@ -1,18 +1,7 @@
 {
-  "private": true,
   "name": "fbtcratype-test",
   "version": "0.1.0",
-  "scripts": {
-    "all-fbts": "yarn manifest && yarn collect-fbts && yarn translate-fbts",
-    "build": "craco build",
-    "collect-fbts": "babel-node node_modules/.bin/fbt-collect --pretty --manifest < .src_manifest.json > .source_strings.json",
-    "eject": "craco eject",
-    "manifest": "babel-node node_modules/.bin/fbt-manifest --src src",
-    "start": "craco start",
-    "test": "craco test",
-    "test-collect-fbts": "babel-node node_modules/.bin/fbt-collect --plugins @babel/plugin-syntax-flow --pretty --manifest < .src_manifest.json > .test_source_strings.json",
-    "translate-fbts": "babel-node node_modules/.bin/fbt-translate --translations translations/*.json --jenkins > src/translatedFbts.json"
-  },
+  "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -27,6 +16,15 @@
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -38,8 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   }
 }
