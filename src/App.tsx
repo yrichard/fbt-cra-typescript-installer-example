@@ -41,7 +41,7 @@ interface LanguageSelectorProps {
 const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
   const [name, setName] = useState(supportedLanguages[langStore.getItem('lang') as string].name);
   const classes = useStyles();
-  const tStyle = { color: "white" };
+  const textStyle = { color: "white" };
 
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -76,7 +76,7 @@ const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
           </Select>
         </FormControl>
       </Grid>
-      <div style={tStyle}> Translated in {name} </div>
+      <div style={textStyle}> Translated in {name} </div>
     </div>
   )
 }
