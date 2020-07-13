@@ -1,30 +1,30 @@
 import "./App.css";
 
 
-import { FbtParam, IntlViewerContext, fbt, init } from "fbt";
+import { FbtParam, FbtName, FbtEnum, IntlViewerContext, fbt, init, FbtPlural } from "fbt";
 import React, { FormEvent, useCallback, useRef, useState, ChangeEvent, ReactElement } from "react";
 import { Button, TextField, Container, Menu, MenuItem, Select, FormControl, makeStyles, Grid, colors } from '@material-ui/core';
 
 import intl from "./translatedFbts.json";
 import logo from "./logo.svg";
+import { stringify } from "querystring";
 
 // This will load the translated strings in FBT.
 init({ translations: intl });
-
-const supportedLanguages: { [shortname: string]: { name: string } } = {
-  "en_US": { name: "English" },
-  "fr_FR": { name: "French" },
-  "pi_PI": { name: "Pirate" }
-}
 
 const langStore = window.localStorage;
 if (langStore.getItem("lang") == null) {
   langStore.setItem("lang", "en_US");
 }
-
 IntlViewerContext.locale = langStore.getItem("lang") || "en_EN";
 
-const useStyles = makeStyles((theme) => ({
+const supportedLanguages: { [shortname: string]: { name: string } } = {
+  "en_US": { name: fbt("English", "eng") },
+  "fr_FR": { name: fbt("French", "fr") },
+  "pi_PI": { name: fbt("Pirate", "pi") }
+}
+
+const langStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
     minWidth: 100,
@@ -34,13 +34,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface LanguageSelectorProps {
-  name: string;
-}
+const enumStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 100,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
-const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
+const LanguageSelector = (): ReactElement => {
   const [name, setName] = useState(supportedLanguages[langStore.getItem('lang') as string].name);
-  const classes = useStyles();
+  const classes = langStyles();
   const textStyle = { color: "white" };
 
   const onValueChange = useCallback(
@@ -53,10 +59,11 @@ const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
   );
 
   const arrayMenuItems = [];
+  console.log(supportedLanguages);
 
   for (let language in supportedLanguages) {
-    const languageName = supportedLanguages[language].name;
-    arrayMenuItems.push(<MenuItem value={language}> {languageName} </MenuItem>);
+    const languageName = supportedLanguages[language].name as string;
+    arrayMenuItems.push(<MenuItem value={language}>{languageName}</MenuItem>);
   }
 
 
@@ -81,6 +88,51 @@ const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
   )
 }
 
+const EnumSelector = (): ReactElement => {
+  const enumItems = [
+    <MenuItem value="CAR"><fbt desc="car">Car</fbt></MenuItem>,
+    <MenuItem value="HOUSE"><fbt desc="house">House</fbt></MenuItem>,
+    <MenuItem value="BOAT"><fbt desc="boat">Boat</fbt></MenuItem>
+  ];
+  const [name, setName] = useState("CAR");
+  const classes = enumStyles();
+
+  const onValueChange = useCallback(
+    (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+      const value = event.target.value as string;
+      setName(value);
+      //window.location.reload();
+    }, []
+  );
+
+  return (
+    <div>
+      <FormControl className={classes.formControl}>
+        <Select
+          id="simple-menu"
+          onChange={onValueChange}
+          defaultValue={langStore.getItem('lang')}
+          style={{ backgroundColor: "white" }}
+        >
+          {
+            enumItems
+          }
+        </Select>
+      </FormControl>
+      <div>
+        <fbt desc="buy prompt">
+          Buy a new
+    <FbtEnum enum-range={{
+            CAR: "car",
+            HOUSE: "house",
+            BOAT: "boat",
+          }} value={name} />!
+  </fbt>
+      </div>
+    </div>
+  )
+}
+
 export default () => {
   // This might trigger the error 'Unexpected token, expected ";"'
   // when doing 'yarn collect-fbts'. Adding a 'babel.config.js' file
@@ -90,6 +142,7 @@ export default () => {
   const [name, setName] = useState("");
   const [nameInputValue, setNameInputValue] = useState("");
   const inputNameRef = useRef(null);
+
 
   const onSubmitName = useCallback(
     (event: FormEvent) => {
@@ -101,11 +154,12 @@ export default () => {
 
   const onNameInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      console.log(event.target.value);
       setNameInputValue(event.target.value);
     },
     []
   );
+
+
 
   const fbtParamsTest = (
     <div>
@@ -116,10 +170,9 @@ export default () => {
   );
 
 
-
   return (
     <div className="App">
-      <LanguageSelector name={langStore.getItem('lang') as string} />
+      <LanguageSelector />
 
       <header className="App-header">
 
@@ -171,9 +224,17 @@ export default () => {
               <Button variant="contained" color="primary" size="large" type="submit">
                 <fbt desc="submit button label">Submit</fbt>
               </Button>
+              {name && fbtParamsTest}
             </form>
+            <h2>FbtEnum</h2>
+            <div>
+              <fbt desc="about FbtEnum">
+                <strong>FbtEnum</strong> allows you to eliminate UI code duplication
+              while enabling accurate translations.
+              </fbt>
+            </div>
+            <EnumSelector />
 
-            {name && fbtParamsTest}
           </div>
         </Container>
       </div>
