@@ -7,7 +7,6 @@ import { Button, TextField, Container, Menu, MenuItem, Select, FormControl, make
 
 import intl from "./translatedFbts.json";
 import logo from "./logo.svg";
-import { stringify } from "querystring";
 
 // This will load the translated strings in FBT.
 init({ translations: intl });
@@ -19,12 +18,12 @@ if (langStore.getItem("lang") == null) {
 IntlViewerContext.locale = langStore.getItem("lang") || "en_EN";
 
 const supportedLanguages: { [shortname: string]: { name: string } } = {
-  "en_US": { name: fbt("English", "eng") },
-  "fr_FR": { name: fbt("French", "fr") },
-  "pi_PI": { name: fbt("Pirate", "pi") }
+  "en_US": { name: fbt("English", "English label for language selector") },
+  "fr_FR": { name: fbt("French", "French label for language selector") },
+  "pi_PI": { name: fbt("Pirate", "Pirate label for language selector") }
 }
 
-const langStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
     minWidth: 100,
@@ -32,22 +31,14 @@ const langStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-}));
-
-const enumStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 100,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  color: {
+    color: "white"
   },
 }));
 
 const LanguageSelector = (): ReactElement => {
   const [name, setName] = useState(supportedLanguages[langStore.getItem('lang') as string].name);
-  const classes = langStyles();
-  const textStyle = { color: "white" };
+  const classes = useStyles();
 
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -59,13 +50,10 @@ const LanguageSelector = (): ReactElement => {
   );
 
   const arrayMenuItems = [];
-  console.log(supportedLanguages);
-
   for (let language in supportedLanguages) {
     const languageName = supportedLanguages[language].name as string;
     arrayMenuItems.push(<MenuItem value={language}>{languageName}</MenuItem>);
   }
-
 
   return (
     <div>
@@ -83,25 +71,24 @@ const LanguageSelector = (): ReactElement => {
           </Select>
         </FormControl>
       </Grid>
-      <div style={textStyle}> Translated in {name} </div>
+      <div className={classes.color}> Translated in {name} </div>
     </div>
   )
 }
 
 const EnumSelector = (): ReactElement => {
   const enumItems = [
-    <MenuItem value="CAR"><fbt desc="car">Car</fbt></MenuItem>,
-    <MenuItem value="HOUSE"><fbt desc="house">House</fbt></MenuItem>,
-    <MenuItem value="BOAT"><fbt desc="boat">Boat</fbt></MenuItem>
+    <MenuItem value="CAR"><fbt desc="Car menu item">Car</fbt></MenuItem>,
+    <MenuItem value="HOUSE"><fbt desc="House menu item">House</fbt></MenuItem>,
+    <MenuItem value="BOAT"><fbt desc="Boat menu item">Boat</fbt></MenuItem>
   ];
   const [name, setName] = useState("CAR");
-  const classes = enumStyles();
+  const classes = useStyles();
 
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
       const value = event.target.value as string;
       setName(value);
-      //window.location.reload();
     }, []
   );
 
