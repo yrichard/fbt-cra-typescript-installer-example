@@ -31,9 +31,12 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  color: {
+  whiteTextColor: {
     color: "white"
   },
+  whiteBgColor: {
+    backgroundColor: "white"
+  }
 }));
 
 const LanguageSelector = (): ReactElement => {
@@ -63,7 +66,7 @@ const LanguageSelector = (): ReactElement => {
             id="simple-menu"
             onChange={onValueChange}
             defaultValue={langStore.getItem('lang')}
-            style={{ backgroundColor: "white" }}
+            className={classes.whiteBgColor}
           >
             {
               arrayMenuItems
@@ -71,7 +74,7 @@ const LanguageSelector = (): ReactElement => {
           </Select>
         </FormControl>
       </Grid>
-      <div className={classes.color}> Translated in {name} </div>
+      <div className={classes.whiteTextColor}> Translated in {name} </div>
     </div>
   )
 }
@@ -84,7 +87,6 @@ const EnumSelector = (): ReactElement => {
   ];
   const [name, setName] = useState("CAR");
   const classes = useStyles();
-
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
       const value = event.target.value as string;
@@ -99,7 +101,7 @@ const EnumSelector = (): ReactElement => {
           id="simple-menu"
           onChange={onValueChange}
           defaultValue={langStore.getItem('lang')}
-          style={{ backgroundColor: "white" }}
+          className={classes.whiteBgColor}
         >
           {
             enumItems
@@ -130,7 +132,6 @@ export default () => {
   const [nameInputValue, setNameInputValue] = useState("");
   const inputNameRef = useRef(null);
 
-
   const onSubmitName = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
@@ -146,8 +147,6 @@ export default () => {
     []
   );
 
-
-
   const fbtParamsTest = (
     <div>
       <fbt desc="FbtParams example string">
@@ -156,13 +155,10 @@ export default () => {
     </div>
   );
 
-
   return (
     <div className="App">
       <LanguageSelector />
-
       <header className="App-header">
-
         <img
           src={logo}
           className="App-logo"
@@ -221,7 +217,6 @@ export default () => {
               </fbt>
             </div>
             <EnumSelector />
-
           </div>
         </Container>
       </div>
