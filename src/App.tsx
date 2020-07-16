@@ -1,7 +1,7 @@
 import "./App.css";
 
 
-import { FbtParam, IntlViewerContext, fbt, init } from "fbt";
+import { FbtParam, FbtName, FbtEnum, IntlViewerContext, fbt, init, FbtPlural } from "fbt";
 import React, { FormEvent, useCallback, useRef, useState, ChangeEvent, ReactElement } from "react";
 import { Button, TextField, Container, Menu, MenuItem, Select, FormControl, makeStyles, Grid, colors } from '@material-ui/core';
 
@@ -11,10 +11,16 @@ import logo from "./logo.svg";
 // This will load the translated strings in FBT.
 init({ translations: intl });
 
-IntlViewerContext.locale = "fr_FR";
+const langStore = window.localStorage;
+if (langStore.getItem("lang") == null) {
+  langStore.setItem("lang", "en_US");
+}
+IntlViewerContext.locale = langStore.getItem("lang") || "en_EN";
 
-interface LanguageSelectorProps {
-  name: string;
+const supportedLanguages: { [shortname: string]: { name: string } } = {
+  "en_US": { name: fbt("English", "English label for language selector") },
+  "fr_FR": { name: fbt("French", "French label for language selector") },
+  "pi_PI": { name: fbt("Pirate", "Pirate label for language selector") }
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -25,13 +31,62 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  whiteTextColor: {
+    color: "white"
+  },
+  whiteBgColor: {
+    backgroundColor: "white"
+  }
 }));
 
-const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
-  const [name, setName] = useState(props.name);
+const LanguageSelector = (): ReactElement => {
+  const [name, setName] = useState(supportedLanguages[langStore.getItem('lang') as string].name);
   const classes = useStyles();
-  const tStyle = { color: 'white' };
 
+  const onValueChange = useCallback(
+    (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+      const value = event.target.value as string;
+      langStore.setItem("lang", value);
+      setName(supportedLanguages[value].name);
+      window.location.reload();
+    }, []
+  );
+
+  const arrayMenuItems = [];
+  for (let language in supportedLanguages) {
+    const languageName = supportedLanguages[language].name as string;
+    arrayMenuItems.push(<MenuItem value={language}>{languageName}</MenuItem>);
+  }
+
+  return (
+    <div>
+      <Grid container>
+        <FormControl className={classes.formControl}>
+          <Select
+            id="simple-menu"
+            onChange={onValueChange}
+            defaultValue={langStore.getItem('lang')}
+            className={classes.whiteBgColor}
+          >
+            {
+              arrayMenuItems
+            }
+          </Select>
+        </FormControl>
+      </Grid>
+      <div className={classes.whiteTextColor}> Translated in {name} </div>
+    </div>
+  )
+}
+
+const EnumSelector = (): ReactElement => {
+  const enumItems = [
+    <MenuItem value="CAR"><fbt desc="Car menu item">Car</fbt></MenuItem>,
+    <MenuItem value="HOUSE"><fbt desc="House menu item">House</fbt></MenuItem>,
+    <MenuItem value="BOAT"><fbt desc="Boat menu item">Boat</fbt></MenuItem>
+  ];
+  const [name, setName] = useState("CAR");
+  const classes = useStyles();
   const onValueChange = useCallback(
     (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
       const value = event.target.value as string;
@@ -41,21 +96,28 @@ const LanguageSelector = (props: LanguageSelectorProps): ReactElement => {
 
   return (
     <div>
-      <Grid container>
-        <FormControl className={classes.formControl}>
-          <Select
-            id="simple-menu"
-            onChange={onValueChange}
-            defaultValue="English"
-            style={{ backgroundColor: "white" }}
-          >
-            <MenuItem value="English">English</MenuItem>
-            <MenuItem value="French">French</MenuItem>
-            <MenuItem value="Pirate">Pirate</MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
-      <div style={tStyle}> Translated in {name} </div>
+      <FormControl className={classes.formControl}>
+        <Select
+          id="simple-menu"
+          onChange={onValueChange}
+          defaultValue={langStore.getItem('lang')}
+          className={classes.whiteBgColor}
+        >
+          {
+            enumItems
+          }
+        </Select>
+      </FormControl>
+      <div>
+        <fbt desc="buy prompt">
+          Buy a new
+    <FbtEnum enum-range={{
+            CAR: "car",
+            HOUSE: "house",
+            BOAT: "boat",
+          }} value={name} />!
+  </fbt>
+      </div>
     </div>
   )
 }
@@ -80,7 +142,6 @@ export default () => {
 
   const onNameInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      console.log(event.target.value);
       setNameInputValue(event.target.value);
     },
     []
@@ -94,14 +155,10 @@ export default () => {
     </div>
   );
 
-
-
   return (
     <div className="App">
-      <LanguageSelector name="English" />
-
+      <LanguageSelector />
       <header className="App-header">
-
         <img
           src={logo}
           className="App-logo"
@@ -131,7 +188,7 @@ export default () => {
             <fbt desc="about FbtParams">
               <strong>FbtParams</strong> allows you to inject a value within a
             translated string.
-          </fbt>
+            </fbt>
           </div>
           <div>
             <form onSubmit={onSubmitName}>
@@ -150,9 +207,16 @@ export default () => {
               <Button variant="contained" color="primary" size="large" type="submit">
                 <fbt desc="submit button label">Submit</fbt>
               </Button>
+              {name && fbtParamsTest}
             </form>
-
-            {name && fbtParamsTest}
+            <h2>FbtEnum</h2>
+            <div>
+              <fbt desc="about FbtEnum">
+                <strong>FbtEnum</strong> allows you to eliminate UI code duplication
+              while enabling accurate translations.
+              </fbt>
+            </div>
+            <EnumSelector />
           </div>
         </Container>
       </div>

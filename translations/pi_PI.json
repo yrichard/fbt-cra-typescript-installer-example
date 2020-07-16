@@ -1,0 +1,125 @@
+{
+  "fb-locale": "pi_PI",
+  "translations": {
+    "RqH6/1RO1wC8xRjKt95P5A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "yarr! React!",
+        "variations": {}
+      }]
+    },
+    "SpaokJAze/NmDau6SO5VXw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Scribble {=src/App.tsx} and save it with ye life to get a fresh one, matey!",
+        "variations": {}
+      }]
+    },
+    "RqJkrxdoAV6eKA6G2GUNUA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Ahoy, {name}!",
+        "variations": {}
+      }]
+    },
+    "kMgF3KoRf+3wYU1NHfQIGg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "What this fair ship is capable of:",
+        "variations": {}
+      }]
+    },
+    "2Ks/03kndbovrGunpcpkAA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Ye be usin' {=FbtParams} to cast a value into a translated string!",
+        "variations": {}
+      }]
+    },
+    "p2gKVefJdwsEuNM7qk5ygQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Anchors aweigh!",
+        "variations": {}
+      }]
+    },
+    "tGN0j5ePJCeH9fIlp3Yq6w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Getch'er self a new land boat!",
+        "variations": {}
+      }]
+    },
+    "ElXst6oKNLh1XU8GjJucQQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Getch'er self a new abode!",
+        "variations": {}
+      }]
+    },
+    "fAHV109uPI7aCxZqNmuTfg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Getch'er self a new ship!",
+        "variations": {}
+      }]
+    },
+    "zmjRAyqoCJBWz03wEoqRiQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Land Boat",
+        "variations": {}
+      }]
+    },
+    "ytzjmzOYAncpxJtriHPK4g==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Abode",
+        "variations": {}
+      }]
+    },
+    "VEaAH/jV3TOxCKJh0w0Y6w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Ship",
+        "variations": {}
+      }]
+    },
+    "tODojViJ+WuQDxrzA0Ww3w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "The King's",
+        "variations": {}
+      }]
+    },
+    "t3YG/7McMqRRxpx8/DvGmg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Cheese Lover",
+        "variations": {}
+      }]
+    },
+    "27kEKB1YZrisekSMMS1P4A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [{
+        "translation": "Sea Dog Speak",
+        "variations": {}
+      }]
+    }
+  }
+}

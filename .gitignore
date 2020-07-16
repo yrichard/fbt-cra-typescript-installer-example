@@ -29,4 +29,5 @@ babel.config.js
 craco.config.js
 fbt-cra-typescript-installer.log
 /src/translatedFbts.json
+src/translatedFbts.json
 
