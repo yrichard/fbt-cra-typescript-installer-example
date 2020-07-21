@@ -1,12 +1,13 @@
 import "./App.css";
 
 
-import { FbtParam, FbtName, FbtEnum, IntlViewerContext, fbt, init, FbtPlural } from "fbt";
+import { FbtParam, FbtName, FbtEnum, IntlViewerContext, fbt, init, FbtPronoun } from "fbt";
 import React, { FormEvent, useCallback, useRef, useState, ChangeEvent, ReactElement } from "react";
 import { Button, TextField, Container, Menu, MenuItem, Select, FormControl, makeStyles, Grid, colors } from '@material-ui/core';
 
 import intl from "./translatedFbts.json";
 import logo from "./logo.svg";
+import { ENETDOWN } from "constants";
 
 // This will load the translated strings in FBT.
 init({ translations: intl });
